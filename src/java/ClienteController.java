@@ -43,7 +43,11 @@ public List<ClienteModell> clienteModell =  new ArrayList<ClienteModell>();;
             out.println("</head>");
             out.println("<body>");
             out.println("<div class=\"container\">");
-            out.println("<br><a href='index.html' class='btn btn-success'>Volver a la página principal</a><br><br>");
+            out.println("<br><nav class=\"navbar navbar-light bg-light\">\n" +
+                        "            <form class=\"form-inline\">\n" +
+                        "                <br><a href=\"index.html\" class=\"btn btn-success\" >Volver a la página principal</a>\n" +
+                        "            </form>\n" +
+                        "            </nav><br>");
             
             if(
                 request.getParameter("code") == null    ||
