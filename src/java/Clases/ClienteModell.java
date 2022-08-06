@@ -4,7 +4,6 @@
  */
 package Clases;
 
-import java.util.List;
 
 public class ClienteModell{
     public String code;
@@ -20,7 +19,5 @@ public class ClienteModell{
     this.email = email;
     this.phone = phone;
     }
-      
-    
     
 }
