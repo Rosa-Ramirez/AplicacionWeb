@@ -8,43 +8,42 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
     </head>
     <body>
-        <div>TODO write content</div>
+        
         <div class="container">
-            <form  action="ClienteController">
+            <br><a href="ClienteController" class="btn btn-success">Lista de clientes</a><br><br>
+            <form  method="post" action="ClienteController">
                 <div class="form-group">
-                    <label for="exampleInputText">Código</label>
-                    <input type="Text" class="form-control" placeholder="Código" required>
-                    <small id="codeHelp" class="form-text text-muted">No comparta su código con nadie más.</small>
+                    <label for="exampleInputText" id="codeHelp">Código</label>
+                    <input type="Text" class="form-control" placeholder="Código" name="code" required>
+                    <small id="codeHelp2" class="form-text text-muted">No comparta su código con nadie más.</small>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputText">Nombre</label>
-                    <input type="Text" class="form-control" placeholder="First Name" required>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputText">Apellido</label>
-                    <input type="text" class="form-control" id="exampleInputText2" placeholder="Second Name">
+                    <label for="exampleInputName" id="nameHelp">Nombre completo</label>
+                    <input type="Text" class="form-control" placeholder="Nombre y apellido" name="name" required>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputAdress">Dirección</label>
-                    <input type="text" class="form-control" id="exampleInputAdress" aria-describedby="aaddressHelp" placeholder="Morales, Izabal">
+                    <input type="text" class="form-control" id="exampleInputAdress" aria-describedby="aaddressHelp" placeholder="Morales, Izabal" name="address" required>
                     <small id="addressHelp" class="form-text text-muted">No comparta su dirección con nadie más.</small>
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Correo Electrónico</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="email">
                     <small id="emailHelp" class="form-text text-muted">No comparta su correo electrónico con nadie más.</small>
                 </div>
                 <div class="form-group">
                     <label for="tel">Teléfono</label>
-                    <input type="tel" class="form-control" id="tel" placeholder="0000-0000">
+                    <input type="tel" class="form-control" id="tel" placeholder="0000-0000" name="phone">
                 </div>
                 <button type="submit" class="btn btn-success">Enviar</button>
-                <button type="button" class="btn btn-danger">Cancelar</button>
-                <div class="alert alert-success" role="alert">Success alert!</div>
+                <button type="reset" class="btn btn-danger">Cancelar</button>
+                
             </form>
         </div>
     </body>

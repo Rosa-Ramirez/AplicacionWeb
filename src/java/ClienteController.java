@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
+
+import Clases.ClienteModell;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -10,10 +12,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @WebServlet(urlPatterns = {"/ClienteController"})
 public class ClienteController extends HttpServlet {
-
+ClienteModell cliente;
+public List<ClienteModell> clienteModell =  new ArrayList<ClienteModell>();;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -28,15 +34,86 @@ public class ClienteController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            
             out.println("<!DOCTYPE html>");
-            out.println("<html>");
+            out.println("<html><link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css\" integrity=\"sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N\" crossorigin=\"anonymous\">\n" +
+            "<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct\" crossorigin=\"anonymous\"></script>");
             out.println("<head>");
-            out.println("<title>Servlet ClienteController</title>");            
+            out.println("<title>Servlet ClienteController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ClienteController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            out.println("<div class=\"container\">");
+            out.println("<br><a href='index.html' class='btn btn-success'>Volver a la página principal</a><br><br>");
+            
+            if(
+                request.getParameter("code") == null    ||
+                request.getParameter("name") == null    ||
+                request.getParameter("address") == null ||
+                request.getParameter("email") == null   ||
+                request.getParameter("phone") == null
+                       
+                    ) {
+                
+            } else {
+                
+                String clienteCode = request.getParameter("code");
+                String clienteName = request.getParameter("name");
+                String clienteAddress = request.getParameter("address");
+                String clienteEmail = request.getParameter("email");
+                String clientePhone = request.getParameter("phone");
+                this.clienteModell.add(new ClienteModell(
+                        clienteCode,
+                        clienteName,
+                        clienteAddress,
+                        clienteEmail,
+                        clientePhone
+                ));
+                out.println("<div class=\"alert alert-success\" role=\"alert\">Cliente " + clienteCode + " registrado!</div>");
+            }
+            
+            
+            if (!this.clienteModell.isEmpty()){
+                out.println(
+                    "<table class=\"table\">\n" +
+                    "  <thead class=\"thead-dark\">\n" +
+                    "    <tr>\n" +
+                    "      <th scope=\"col\">Código</th>\n" +
+                    "      <th scope=\"col\">Nombre</th>\n" +
+                    "      <th scope=\"col\">Dirección</th>\n" +
+                    "      <th scope=\"col\">Correo</th>\n" +
+                    "      <th scope=\"col\">Teléfono</th>\n" +
+                    "    </tr>\n" +
+                    "  </thead>\n" +
+                    "  <tbody>\n"
+                );
+            } else {
+                out.println("<a class=\"btn btn-danger\">Sin Registros</a>");
+            }
+            
+            for (int i = 0; i < this.clienteModell.size(); i++){
+                cliente = this.clienteModell.get(i);    
+                out.println(                 
+                    "    <tr>\n" +
+                    "      <th scope=\"row\">" + cliente.code + "</th>\n" +
+                    "      <td>" + cliente.name + "</td>\n" +
+                    "      <td>" + cliente.address + "</td>\n" +
+                    "      <td>" + cliente.email + "</td>\n" +
+                    "      <td>" + cliente.phone + "</td>\n" +
+                    "    </tr>\n"
+                );
+            }
+            
+            
+            if (!this.clienteModell.isEmpty()){
+                out.println(                    
+                    "  </tbody>\n" +
+                    "</table>\n" +
+                    "\n"
+                );
+            }
+            
+            out.println("</div>");
+            
         }
     }
 
@@ -67,6 +144,7 @@ public class ClienteController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
     }
 
     /**
