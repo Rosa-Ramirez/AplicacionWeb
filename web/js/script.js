@@ -7,7 +7,6 @@ function enviarForm(){
 var myForm = document.getElementById("contact-form");
 
 document.getElementById("btn3").addEventListener("click", function(){
-    
   myForm.submit();  
 });
 
