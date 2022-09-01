@@ -2,7 +2,28 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/javascript.js to edit this template
  */
-//function enviarFormulario(){
+
+function enviarForm(){ 
+var myForm = document.getElementById("contact-form");
+
+document.getElementById("btn3").addEventListener("click", function(){
+    
+  myForm.submit();  
+});
+
+ };
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ // function enviarFormOpUno(){  
+//     alert("Formulario Enviado");
+// };
+
+ //function enviarFormulario(){
 //	let request = new XMLHttpRequest();
 //request.open('POST', '/php/email-sender.php', true);
 //request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
@@ -37,30 +58,6 @@
 //        XHR.send(formData);
 //        
 //        }
-        
-  
-
-
-
- function enviarFormOpUno(){  
-     alert("Formulario Enviado");
- };
- 
-
- function enviarFormOpDos(){ 
-var myForm = document.getElementById("contact-form");
-
-document.getElementById("btn3").addEventListener("click", function(){
-    
-    
-
-  myForm.submit();  
-});
-
- };
- document.getElementById("contact-form").addEventListener("submit", enviarFormOpUno);
- 
- 
  
 // function enviarFormularioOpcionInge(){
 //	const XHR = new XMLHttpRequest();

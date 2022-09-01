@@ -78,9 +78,9 @@ public List<ClienteModell> clienteModell =  new ArrayList<ClienteModell>();;
                                 "  icon: 'success',\n" +
                                 "  title: '¡Cliente " + clienteCode + " registrado!',\n" +
                                 "  showConfirmButton: false,\n" +
-                                "  timer: 1500\n" +
-                                "})</script>"
-                        + "<div class=\"alert alert-success\" role=\"alert\">Cliente " + clienteCode + " registrado!</div>");
+                                "  timer: 1900\n" +
+                                "})</script>" + 
+                        "<div class=\"alert alert-success\" role=\"alert\">Cliente " + clienteCode + " registrado!</div>");
             }
             
             
