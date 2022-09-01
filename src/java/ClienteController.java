@@ -37,7 +37,8 @@ public List<ClienteModell> clienteModell =  new ArrayList<ClienteModell>();;
             
             out.println("<!DOCTYPE html>");
             out.println("<html><link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css\" integrity=\"sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N\" crossorigin=\"anonymous\">\n" +
-            "<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct\" crossorigin=\"anonymous\"></script>");
+            "<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct\" crossorigin=\"anonymous\"></script>"
+            +"<script src=\"//cdn.jsdelivr.net/npm/sweetalert2@11\"></script>");
             out.println("<head>");
             out.println("<title>Servlet ClienteController</title>");
             out.println("</head>");
@@ -72,7 +73,14 @@ public List<ClienteModell> clienteModell =  new ArrayList<ClienteModell>();;
                         clienteEmail,
                         clientePhone
                 ));
-                out.println("<div class=\"alert alert-success\" role=\"alert\">Cliente " + clienteCode + " registrado!</div>");
+                out.println("<script>Swal.fire({\n" +
+                                "  position: 'top-end',\n" +
+                                "  icon: 'success',\n" +
+                                "  title: '¡Cliente " + clienteCode + " registrado!',\n" +
+                                "  showConfirmButton: false,\n" +
+                                "  timer: 1500\n" +
+                                "})</script>"
+                        + "<div class=\"alert alert-success\" role=\"alert\">Cliente " + clienteCode + " registrado!</div>");
             }
             
             
@@ -103,7 +111,11 @@ public List<ClienteModell> clienteModell =  new ArrayList<ClienteModell>();;
                     "      <td>" + cliente.address + "</td>\n" +
                     "      <td>" + cliente.email + "</td>\n" +
                     "      <td>" + cliente.phone + "</td>\n" +
-                    "    </tr>\n"
+                    "      <td>" +
+                    "           <button type=\"button\" class=\"btn btn-warning\"></i>Editar</button> " +
+                    "           <button type=\"button\" class=\"btn btn-danger\">Eliminar</button>" +
+                    "      </td>\n" +
+                    "      </tr>\n"
                 );
             }
             

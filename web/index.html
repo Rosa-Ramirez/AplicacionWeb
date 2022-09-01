@@ -10,22 +10,30 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+        
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.29/dist/sweetalert2.all.min.js"></script>
+        <script src="js/script.js"></script>
     </head>
     <body>
         
         <div class="container">
             <br><nav class="navbar navbar-light bg-light">
             <form class="form-inline">
-                <br><a href="ClienteController" class="btn btn-success" >Lista de clientes</a>
+                <br><a  class="btn btn-success" href="ClienteController">Lista de clientes</a>
             </form>
             </nav><br>
             <center><h2>Registrar Datos</h2></center>
-            <form  method="post" action="ClienteController">
-                <div class="form-group">
-                    <label for="exampleInputText" id="codeHelp">Código</label>
-                    <input type="Text" class="form-control" placeholder="Código" name="code" required>
+            <form  class="needs-validation" method="POST"  id="contact-form" name="form" action="ClienteController">
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                    <label for="validationTooltip01" id="codeHelp">Código</label>
+                    <input type="text" class="form-control" placeholder="Código" id="validationTooltip01" name="code" required>
+                    <div class="valid-tooltip">
+                        Looks good!
+                    </div>
+                    </div>
                     <small id="codeHelp2" class="form-text text-muted">No comparta su código con nadie más.</small>
                 </div>
                 <div class="form-group">
@@ -46,9 +54,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                     <label for="tel">Teléfono</label>
                     <input type="tel" class="form-control" id="tel" placeholder="0000-0000" name="phone">
                 </div>
-                <button type="submit" class="btn btn-success">Enviar</button>
+                <button type="submit" class="btn btn-success" >Enviar</button>
                 <button type="reset" class="btn btn-danger">Cancelar</button>
-                
+               
+                <button type="reset" class="btn btn-danger">Cancelar</button>
+               
+                <input type="button" value="enviar formulario Op Dos" onclick=" enviarFormOpDos(); " class="submit-button btn btn-success" id="btn3">
+                 <!-- <input type="submit" value="enviar formulario Op Uno" onclick="enviarFormOpUno()" class="submit-button btn btn-success">-->
+                 <!-- <input type="button" value="enviar formulario" onclick=" enviarFormulario();" class="submit-button btn btn-success"> -->
+                <!--  <input type="button" value="enviar formulario Op Inge" onclick="enviarFormularioOpcionInge()" class="submit-button btn btn-success"> -->
             </form>
         </div>
     </body>
