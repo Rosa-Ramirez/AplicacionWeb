@@ -3,13 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/javascript.js to edit this template
  */
 
+
 function enviarForm(){ 
 var myForm = document.getElementById("contact-form");
 
 document.getElementById("btn3").addEventListener("click", function(){
   myForm.submit();  
 });
-
  };
  
  
@@ -58,25 +58,90 @@ document.getElementById("btn3").addEventListener("click", function(){
 //        
 //        }
  
-// function enviarFormularioOpcionInge(){
-//	const XHR = new XMLHttpRequest();
-//	  var formData = new FormData(document.getElementById('contact-form'));
-//
-//	  // Define what happens on successful data submission
-//	  XHR.addEventListener('load', (event) => {
+ function enviarFormularioOpcionDos(){
+	const XHR = new XMLHttpRequest();
+	  var formData = new URLSearchParams(new FormData(document.getElementById('form'))).toString();
+
+	  // Define what happens on successful data submission
+//	  XHR.addEventListener('click', (event) => {
 //	    alert('Yeah! Data sent and response loaded.');
 //	  });
-//
-//	  // Define what happens in case of error
-//	  XHR.addEventListener('error', (event) => {
-//	    alert('Oops! Something went wrong.');
-//	  });
-//
-//	  // Set up our request
-//	  XHR.open('POST', 'ClienteController');
-//
-//	  // Send our FormData object; HTTP headers are set automatically
-//	  XHR.send(formData);
-//	
-//}
- 
+
+	  // Define what happens in case of error
+	  XHR.addEventListener('error', (event) => {
+	    alert('Oops! Something went wrong.');
+	  });
+
+	  // Set up our request
+	  XHR.open('POST', 'ClienteController', true);
+                    XHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    
+                    XHR.onload = () => {
+                        if (XHR.readyState === XHR.DONE && XHR.status === 200) {
+                            console.log("response => " + XHR.response);
+                            document.getElementById("bodyTable").innerHTML=XHR.response;
+                            mostrarMensaje();
+                        }
+                    };
+	  // Send our FormData object; HTTP headers are set automatically
+            console.log(formData);
+	  XHR.send(formData);
+//	console.log(formData);
+}
+
+function deleteData(position){
+                        let formData = "position=" + position;
+    
+                     const XHR = new XMLHttpRequest();
+
+	  // Define what happens in case of error
+	  XHR.addEventListener('error', (event) => {
+	    alert('Oops! Something went wrong.');
+	  });
+
+	  // Set up our request
+	  XHR.open('POST', 'ClienteController', true);
+                    XHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    
+                    XHR.onload = () => {
+                        if (XHR.readyState === XHR.DONE && XHR.status === 200) {
+                            console.log("response => " + XHR.response);
+                            document.getElementById("Table").innerHTML=XHR.response;
+                            mostrarMensajeDelete();
+                        }
+                    };
+	  XHR.send(formData);
+    
+}
+
+
+ function mostrarMensaje(){
+  Swal.fire({
+  title: 'Cliente Registrado',
+  width: 600,
+  padding: '3em',
+  color: '#716add',
+  background: '#fff url(Images/fondo.jpg)',
+  backdrop: `
+    rgba(0,0,123,0.4)
+    url("Images/nyan-cat.gif")
+    left top
+    no-repeat
+  `
+})
+}
+function mostrarMensajeDelete(){
+  Swal.fire({
+  title: 'Cliente Eliminado',
+  width: 600,
+  padding: '3em',
+  color: '#716add',
+  background: '#fff url(Images/fondo.jpg)',
+  backdrop: `
+    rgba(0,0,123,0.4)
+    url("Images/nyan-cat.gif")
+    left top
+    no-repeat
+  `
+})
+}
