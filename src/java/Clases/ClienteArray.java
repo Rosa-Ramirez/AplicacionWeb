@@ -29,8 +29,8 @@ public void saveClient(ClientModell client){
           for(int i = pos; i < indexArray - 1; i++) {
                 this.clientTable[i] = this.clientTable[i + 1];
           }
-//          this.clientTable[indexArray - 1] = null;
-//          indexArray --;
+          this.clientTable[indexArray - 1] = null;
+          indexArray --;
     }
 
 }
