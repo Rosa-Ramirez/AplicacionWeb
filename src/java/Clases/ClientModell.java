@@ -6,25 +6,29 @@ package Clases;
 
 
 public class ClientModell{
-    private String code;
+    private int code;
     private String name;
+    private String lastName;
     private String address;
     private String email;
-    private String phone;
+    private int phone;
+    private int option;
     
-    public ClientModell(String code, String name, String address, String email, String phone){
+    public ClientModell(int code, String name, String lastName, String address, String email, int phone, int option){
     this.code = code;
     this.name = name;
+    this.lastName = lastName;
     this.address = address;
     this.email = email;
     this.phone = phone;
+    this.option = option;
     }
 
-    public String getCode() {
+    public int getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(int code) {
         this.code = code;
     }
 
@@ -36,6 +40,14 @@ public class ClientModell{
         this.name = name;
     }
 
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+    
     public String getAddress() {
         return address;
     }
@@ -52,12 +64,20 @@ public class ClientModell{
         this.email = email;
     }
 
-    public String getPhone() {
+    public int getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
+    public void setPhone(int phone) {
         this.phone = phone;
+    }
+
+    public int getOption() {
+        return option;
+    }
+
+    public void setOption(int option) {
+        this.option = option;
     }
     
     

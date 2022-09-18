@@ -5,6 +5,7 @@
 
 import Clases.ClienteArray;
 import Clases.ClientModell;
+import Clases.ConexionBaseDeDatos;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -38,11 +39,13 @@ public class ClienteController extends HttpServlet {
         try ( PrintWriter out = response.getWriter()) {
                    if(request.getMethod().equals("POST") && request.getParameter("code")!= null ) {
                             client = new ClientModell(
-                                    request.getParameter("code"),
+                                    Integer.parseInt(request.getParameter("code")),
                                     request.getParameter("name"),
+                                    request.getParameter("lastName"),
                                     request.getParameter("address"),
                                     request.getParameter("email"),
-                                    request.getParameter("phone")
+                                    Integer.parseInt(request.getParameter("phone")),
+                                    Integer.parseInt(request.getParameter("option"))
                             );
                             
                             if(registerClient == null){
@@ -54,12 +57,22 @@ public class ClienteController extends HttpServlet {
                             }
                     }
                    
+                   
                    if(request.getParameter("position") != null){
                             String position = request.getParameter("position");
-                            registerClient.deleteClient(position);
+                            registerClient.deleteClient(position);      
                    }
-                   
+                  
+                    if(registerClient.guardarAlumno2(client)){//almacenarlo en BD
+                    out.println(1);
+                     }else{
+                         out.println(0);
+                     }
                     registredClient = registerClient.getClient();
+            StringBuffer respuesta= new StringBuffer();
+            
+                    registerClient.getAlumnos2(respuesta);
+                            
 
                      out.println("<!DOCTYPE html>");
                      out.println("<html><link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css\" integrity=\"sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N\" crossorigin=\"anonymous\">\n" +
@@ -69,9 +82,9 @@ public class ClienteController extends HttpServlet {
                      );
                      
                      out.println("<head>");
-                     out.println("<title>Servlet ClienteController</title>");
+                     out.println("<title>Tabla de Cliente</title>");
                      out.println("</head>");
-                     out.println("<body id=\"Table\">");
+                     out.println("<body id=\"TableClient\">");
                      out.println("<div class=\"container\">");
                      out.println("<br><nav class=\"navbar navbar-light bg-light\">\n" +
                                  "            <form class=\"form-inline\">\n" +
@@ -85,20 +98,24 @@ public class ClienteController extends HttpServlet {
                              "    <tr>\n" +
                              "      <th scope=\"col\">Código</th>\n" +
                              "      <th scope=\"col\">Nombre</th>\n" +
+                             "      <th scope=\"col\">Apellido</th>\n" +
                              "      <th scope=\"col\">Dirección</th>\n" +
                              "      <th scope=\"col\">Correo</th>\n" +
                              "      <th scope=\"col\">Teléfono</th>\n" +
+                             "      <th scope=\"col\">Acción</th>\n" +
                              "    </tr>\n" +
                              "  </thead>\n" +
                              "  <tbody >\n"
                          );
                      for (int i = 0; i < registredClient.length; i ++){
                          if(registredClient[i] !=null){
-                             out.println("<tr><td id=\"uno\">" + registredClient[i].getCode()+  "</td>");
-                             out.println("<td id=\"dos\">" + registredClient[i].getName()+  "</td>");
-                             out.println("<td id=\"tres\">" + registredClient[i].getAddress()+   "</td>");
-                             out.println("<td id=\"cuatro\">" + registredClient[i].getEmail()+ "</td>");
-                             out.println("<td id=\"cinco\">" + registredClient[i].getPhone()+ "</td>");
+                             out.println("<tr><td>" + registredClient[i].getCode()+  "</td>");
+                             out.println("<td>" + registredClient[i].getName()+  "</td>");
+                             out.println("<td>" + registredClient[i].getLastName()+  "</td>");
+                             out.println("<td>" + registredClient[i].getAddress()+   "</td>");
+                             out.println("<td>" + registredClient[i].getEmail()+ "</td>");
+                             out.println("<td>" + registredClient[i].getPhone()+ "</td>");
+                             out.println("<td>" + registredClient[i].getOption()+ "</td>");
                              out.println("<td>"
                                         + "<button type=\"button\" class=\"btn btn-warning\" id=\"delete\"></i>Editar</button> "
                                         + "<button type=\"button\" class=\"btn btn-danger\" onclick='deleteData("+ i +");'>Eliminar</button>"

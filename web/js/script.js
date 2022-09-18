@@ -106,7 +106,7 @@ function deleteData(position){
                     XHR.onload = () => {
                         if (XHR.readyState === XHR.DONE && XHR.status === 200) {
                             console.log("response => " + XHR.response);
-                            document.getElementById("Table").innerHTML=XHR.response;
+                            document.getElementById("TableClient").innerHTML=XHR.response;
                             mostrarMensajeDelete();
                         }
                     };
