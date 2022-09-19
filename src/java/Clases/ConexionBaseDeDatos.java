@@ -12,12 +12,12 @@ package Clases;
  */
 public class ConexionBaseDeDatos {
 
-    private final String url="jdbc:mysql://localhost:3306";//url de MySQL
+    private final String url="jdbc:mysql://localhost:3306/universidad";//url de MySQL
     private final String usuario="root";
     private final String clave="MySQLServer_Rouss154!";
-
+    Connection conexion=null;  
     public Connection conectar(){
-        Connection conexion=null;  
+        
         
         try{
             Class.forName("com.mysql.jdbc.Driver");

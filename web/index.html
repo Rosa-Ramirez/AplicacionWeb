@@ -10,9 +10,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-        
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.29/dist/sweetalert2.all.min.js"></script>
         <script src="js/script.js"></script>
     </head>
@@ -25,7 +24,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             </form>
             </nav><br>
             
-             <div class="container">
+             <div class="d-flex justify-content-around">
+             <div class="p-3 bd-highlight">
                  
             <h2>Registrar Datos</h2>
             <form   method="POST"  id="form" name="form" action="ClienteController">
@@ -34,6 +34,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                     <div class="col-md-6 mb-3">
                     <label for="code" id="codeHelp">Código</label>
                     <input type="text" class="form-control" placeholder="Código" id="code" name="code" required>
+                    <input type="hidden" name="control" value="GUARDAR">
                     <div class="valid-tooltip">
                         Looks good!
                     </div>
@@ -85,16 +86,29 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                  <!-- <input type="button" value="enviar formulario" onclick=" enviarFormulario();" class="submit-button btn btn-success"> -->
                 <!--  <input type="button" value="enviar formulario Op Inge" onclick="enviarFormularioOpcionInge()" class="submit-button btn btn-success"> -->
             </form>
-        </div>
+             </div>
+        
         <div class="p-3 bd-highlight">
             <div class="container" id="container2">
-                <table class="table table-striped table-hover">
-                   
+               <table class="table table-striped table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <td>Codigo de Estudiante</td>
+                            <td>Nombre del Estudiante</td>
+                            <td>Apellido del Estudiante</td>
+                            <td>Dirección</td>
+                            <td>Correo Institucional</td>
+                            <td>Telefono</td>
+                            <td>Tipo</td>
+                            <td>Acción</td>
+                        </tr>
+                    </thead>
                     <tbody id="bodyTable">
 
                     </tbody>                     
                 </table>
             </div>
         </div>
+                 </div>
     </body>
 </html>

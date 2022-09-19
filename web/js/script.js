@@ -80,7 +80,8 @@ document.getElementById("btn3").addEventListener("click", function(){
                         if (XHR.readyState === XHR.DONE && XHR.status === 200) {
                             console.log("response => " + XHR.response);
                             document.getElementById("bodyTable").innerHTML=XHR.response;
-                            mostrarMensaje();
+                            mostrarMensaje("Cliente Registrado");
+                            
                         }
                     };
 	  // Send our FormData object; HTTP headers are set automatically
@@ -107,7 +108,7 @@ function deleteData(position){
                         if (XHR.readyState === XHR.DONE && XHR.status === 200) {
                             console.log("response => " + XHR.response);
                             document.getElementById("TableClient").innerHTML=XHR.response;
-                            mostrarMensajeDelete();
+                            mostrarMensaje("Cliente Eliminado");
                         }
                     };
 	  XHR.send(formData);
@@ -115,9 +116,9 @@ function deleteData(position){
 }
 
 
- function mostrarMensaje(){
+ function mostrarMensaje(mensaje){
   Swal.fire({
-  title: 'Cliente Registrado',
+  title: mensaje,
   width: 600,
   padding: '3em',
   color: '#716add',
@@ -128,20 +129,27 @@ function deleteData(position){
     left top
     no-repeat
   `
-})
+});
 }
-function mostrarMensajeDelete(){
-  Swal.fire({
-  title: 'Cliente Eliminado',
-  width: 600,
-  padding: '3em',
-  color: '#716add',
-  background: '#fff url(Images/fondo.jpg)',
-  backdrop: `
-    rgba(0,0,123,0.4)
-    url("Images/nyan-cat.gif")
-    left top
-    no-repeat
-  `
-})
+
+function eliminarAlumno(code){
+    const XHR = new XMLHttpRequest();
+    var formData = new URLSearchParams(new FormData());
+    
+    XHR.addEventListener('error', (event) => {
+        alert('Oops! Something went wrong. ');
+    });
+    XHR.open('POST', 'ClienteController', true);
+    XHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    
+    XHR.onload = () => {
+      if (XHR.readyState === XHR.DONE && XHR.status === 200) {
+        console.log("response => " + XHR.response);
+        mostrarMensaje('Cliente Eliminado exitosamente');
+        setTimeout( function() { window.location.reload(); }, 2000 );
+      }
+    };
+            formData.append('codigo_alumno', code);
+    formData.append('control', 'ELIMINAR');
+    XHR.send(formData);
 }

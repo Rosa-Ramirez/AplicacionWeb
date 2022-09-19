@@ -22,7 +22,7 @@ public class ClienteController extends HttpServlet {
     ClientModell client;
     ClienteArray registerClient;
     ClientModell[] registredClient;
-//    ClientModell cliente;
+    StringBuffer objetoRespuesta = new StringBuffer();
 //public List<ClientModell> clienteModell =  new ArrayList<ClientModell>();;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,41 +37,51 @@ public class ClienteController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-                   if(request.getMethod().equals("POST") && request.getParameter("code")!= null ) {
-                            client = new ClientModell(
-                                    Integer.parseInt(request.getParameter("code")),
-                                    request.getParameter("name"),
-                                    request.getParameter("lastName"),
-                                    request.getParameter("address"),
-                                    request.getParameter("email"),
-                                    Integer.parseInt(request.getParameter("phone")),
-                                    Integer.parseInt(request.getParameter("option"))
-                            );
-                            
-                            if(registerClient == null){
-                                registerClient = new ClienteArray();
-                            }
+                  if(request.getMethod().equals("POST") && request.getParameter("code")!= null ) {
+                       
+                           registerClient = new ClienteArray();
+                           String control = request.getParameter("control");
 
-                            if(!request.getParameter("code").equals("")){
-                                registerClient.saveClient(client);
-                            }
+                           if(control.toUpperCase().equals("GUARDAR")){
+                                    client = new ClientModell(
+                                             Integer.parseInt(request.getParameter("code")),
+                                             request.getParameter("name"),
+                                             request.getParameter("lastName"),
+                                             request.getParameter("address"),
+                                             request.getParameter("email"),
+                                             Integer.parseInt(request.getParameter("phone")),
+                                             Integer.parseInt(request.getParameter("option")));
+                                             registerClient.guardarAlumno2(client);
+                           }
+                           else if(control.toUpperCase().equals("ELIMINAR")){
+                                    int codeDelete = Integer.parseInt(request.getParameter("codigo_alumno"));
+                                    registerClient.eliminarCliente(codeDelete);
+                           }
+                            
+//                           if(registerClient == null){
+//                                registerClient = new ClienteArray();
+//                           }
+//
+//                            if(!request.getParameter("code").equals("")){
+//                                registerClient.saveClient(client);
+//                            }
                     }
                    
                    
-                   if(request.getParameter("position") != null){
-                            String position = request.getParameter("position");
-                            registerClient.deleteClient(position);      
-                   }
+//                   if(request.getParameter("position") != null){
+//                            String position = request.getParameter("position");
+//                            registerClient.deleteClient(position);      
+//                   }
                   
-                    if(registerClient.guardarAlumno2(client)){//almacenarlo en BD
-                    out.println(1);
-                     }else{
-                         out.println(0);
-                     }
-                    registredClient = registerClient.getClient();
-            StringBuffer respuesta= new StringBuffer();
+//                    if(registerClient.guardarAlumno2(client)){//almacenarlo en BD
+//                    out.println(1);
+//                     }else{
+//                         out.println(0);
+//                     }
+//                    registredClient = registerClient.getClient();
             
-                    registerClient.getAlumnos2(respuesta);
+            registerClient.getClient2(objetoRespuesta);
+            out.write(objetoRespuesta.toString());
                             
 
                      out.println("<!DOCTYPE html>");
@@ -80,54 +90,54 @@ public class ClienteController extends HttpServlet {
                      +"<script src=\"//cdn.jsdelivr.net/npm/sweetalert2@11\"></script>"
                      +"<script src='js/script.js'></script>"
                      );
-                     
-                     out.println("<head>");
-                     out.println("<title>Tabla de Cliente</title>");
-                     out.println("</head>");
-                     out.println("<body id=\"TableClient\">");
-                     out.println("<div class=\"container\">");
-                     out.println("<br><nav class=\"navbar navbar-light bg-light\">\n" +
-                                 "            <form class=\"form-inline\">\n" +
-                                 "                <br><a href=\"index.html\" class=\"btn btn-success\" >Volver a la página principal</a>\n" +
-                                 "            </form>\n" +
-                                 "            </nav><br>");
-
+//                     
+//                     out.println("<head>");
+//                     out.println("<title>Tabla de Cliente</title>");
+//                     out.println("</head>");
+//                     out.println("<body id=\"TableClient\">");
+//                     out.println("<div class=\"container\">");
+//                     out.println("<br><nav class=\"navbar navbar-light bg-light\">\n" +
+//                                 "            <form class=\"form-inline\">\n" +
+//                                 "                <br><a href=\"index.html\" class=\"btn btn-success\" >Volver a la página principal</a>\n" +
+//                                 "            </form>\n" +
+//                                 "            </nav><br>");
+//
                      out.println(
                              "<table class=\"table\">\n" +
-                             "  <thead class=\"thead-dark\">\n" +
-                             "    <tr>\n" +
-                             "      <th scope=\"col\">Código</th>\n" +
-                             "      <th scope=\"col\">Nombre</th>\n" +
-                             "      <th scope=\"col\">Apellido</th>\n" +
-                             "      <th scope=\"col\">Dirección</th>\n" +
-                             "      <th scope=\"col\">Correo</th>\n" +
-                             "      <th scope=\"col\">Teléfono</th>\n" +
-                             "      <th scope=\"col\">Acción</th>\n" +
-                             "    </tr>\n" +
-                             "  </thead>\n" +
+//                             "  <thead class=\"thead-dark\">\n" +
+//                             "    <tr>\n" +
+//                             "      <th scope=\"col\">Código</th>\n" +
+//                             "      <th scope=\"col\">Nombre</th>\n" +
+//                             "      <th scope=\"col\">Apellido</th>\n" +
+//                             "      <th scope=\"col\">Dirección</th>\n" +
+//                             "      <th scope=\"col\">Correo</th>\n" +
+//                             "      <th scope=\"col\">Teléfono</th>\n" +
+//                             "      <th scope=\"col\">Acción</th>\n" +
+//                             "    </tr>\n" +
+//                             "  </thead>\n" +
                              "  <tbody >\n"
                          );
-                     for (int i = 0; i < registredClient.length; i ++){
-                         if(registredClient[i] !=null){
-                             out.println("<tr><td>" + registredClient[i].getCode()+  "</td>");
-                             out.println("<td>" + registredClient[i].getName()+  "</td>");
-                             out.println("<td>" + registredClient[i].getLastName()+  "</td>");
-                             out.println("<td>" + registredClient[i].getAddress()+   "</td>");
-                             out.println("<td>" + registredClient[i].getEmail()+ "</td>");
-                             out.println("<td>" + registredClient[i].getPhone()+ "</td>");
-                             out.println("<td>" + registredClient[i].getOption()+ "</td>");
-                             out.println("<td>"
-                                        + "<button type=\"button\" class=\"btn btn-warning\" id=\"delete\"></i>Editar</button> "
-                                        + "<button type=\"button\" class=\"btn btn-danger\" onclick='deleteData("+ i +");'>Eliminar</button>"
-                                        + "</td></tr>");
-                         }
-                     }
-                     out.println("</tbody></table>");
-                     out.println("</div>");
-                     out.println("<div class='container-lg d-flex'> <a href='index.html' class=\"btn btn-success ml-auto\">Registrar Nuevo Cliente</a></div><br>");
-                     out.println("</form>");
-                     out.println("</body>");
-                     out.println("</html>");
+//                     for (int i = 0; i < registredClient.length; i ++){
+//                         if(registredClient[i] !=null){
+//                             out.println("<tr><td>" + registredClient[i].getCode()+  "</td>");
+//                             out.println("<td>" + registredClient[i].getName()+  "</td>");
+//                             out.println("<td>" + registredClient[i].getLastName()+  "</td>");
+//                             out.println("<td>" + registredClient[i].getAddress()+   "</td>");
+//                             out.println("<td>" + registredClient[i].getEmail()+ "</td>");
+//                             out.println("<td>" + registredClient[i].getPhone()+ "</td>");
+//                             out.println("<td>" + registredClient[i].getOption()+ "</td>");
+//                             out.println("<td>"
+//                                        + "<button type=\"button\" class=\"btn btn-warning\" id=\"delete\"></i>Editar</button> "
+//                                        + "<button type=\"button\" class=\"btn btn-danger\" onclick='deleteData("+ i +");'>Eliminar</button>"
+//                                        + "</td></tr>");
+//                         }
+//                     }
+//                     out.println("</tbody></table>");
+//                     out.println("</div>");
+//                     out.println("<div class='container-lg d-flex'> <a href='index.html' class=\"btn btn-success ml-auto\">Registrar Nuevo Cliente</a></div><br>");
+//                     out.println("</form>");
+//                     out.println("</body>");
+//                     out.println("</html>");
 
 
          //            if(

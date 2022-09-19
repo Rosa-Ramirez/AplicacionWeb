@@ -32,7 +32,7 @@ public void saveClient(ClientModell client){
     public ClientModell[] getClient(){
         return clientTable;
     }
-
+     
     public void deleteClient(String position){
           int pos = Integer.parseInt(position);
           this.clientTable[pos] = null;
@@ -48,7 +48,7 @@ public void saveClient(ClientModell client){
         conexion=conectorBD.conectar();
     }
 
-    public boolean guardarAlumno2(ClientModell client){        
+    public String guardarAlumno2(ClientModell client){        
         String sql = "INSERT INTO universidad.cliente(numero_carne, nombre, apellido, direccion, correo, telefono, genero_idgenero)  ";
              sql += " VALUES(  ?,?,?,?,?,?,?)"; 
         try{
@@ -64,30 +64,40 @@ public void saveClient(ClientModell client){
             int resultado = statement.executeUpdate(); 
             
                 if(resultado > 0){
-                    return true;
+                    return String.valueOf(resultado);
                 }else{
-                    return false;
+                    return String.valueOf(resultado);
                 }
         }catch(SQLException e){
-            String error = e.getMessage();  
-            return false;
+            return e.getMessage();
         }    
     }
-    public void getAlumnos2(StringBuffer respuesta){   
+    
+    public void getClient2(StringBuffer respuesta){   
         String sql="select * from universidad.cliente";
         try{
         abrirConexion();
+        respuesta.setLength(0);
+                
         statement= conexion.prepareStatement(sql);                        
         result = statement.executeQuery();            
             if (result!=null){
                 while (result.next()){
+                respuesta.append("<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css\" integrity=\"sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N\" crossorigin=\"anonymous\">\n" +
+                     "<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct\" crossorigin=\"anonymous\"></script>"
+                     +"<script src=\"//cdn.jsdelivr.net/npm/sweetalert2@11\"></script>"
+                     +"<script src='js/script.js'></script>"
+                     );
                 respuesta.append("<tr>");
                 respuesta.append("<td >").append(result.getString("numero_carne")).append("</td>");
                 respuesta.append("<td >").append(result.getString("nombre")).append("</td>");
+                respuesta.append("<td >").append(result.getString("apellido")).append("</td>");
+                respuesta.append("<td >").append(result.getString("direccion")).append("</td>");
                 respuesta.append("<td >").append(result.getString("correo")).append("</td>");
                 respuesta.append("<td >").append(result.getString("telefono")).append("</td>");
+                respuesta.append("<td >").append(result.getString("genero_idgenero")).append("</td>");
                 respuesta.append("<td id=\"").append(result.getString("numero_carne"))
-                        .append("\"  onclick=\"edit(this.id);\">") 
+                        .append("\"  onclick=\"eliminarAlumno(this.id);\">") 
                         .append(" <a class=\"btn btn-warning\"'><i class=\"fas fa-edit\"></i>  </a>"
                                 +" <a class=\"btn btn-danger\"'> <i class=\"fas fa-trash-alt\"></i> </a>"
                                 + " <td></tr>");
@@ -99,6 +109,22 @@ public void saveClient(ClientModell client){
         catch(SQLException ex){
             ex.printStackTrace();
         }
+    }
+    
+    public String eliminarCliente(int carne){
+        String sql = "DELETE FROM universidad.cliente WHERE numero_carne = " + carne;
+        try{
+            abrirConexion();
+            statement = conexion.prepareStatement(sql);
+            int resultado = statement.executeUpdate();
+            if(resultado > 0){
+                return String.valueOf(resultado);
+            }else{
+                return String.valueOf(resultado);
+            }
+        }catch(SQLException e){
+                    return e.getMessage();
+                    }
     }
     
 }
