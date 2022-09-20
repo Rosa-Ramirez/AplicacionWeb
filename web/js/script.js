@@ -85,7 +85,7 @@ document.getElementById("btn3").addEventListener("click", function(){
                         }
                     };
 	  // Send our FormData object; HTTP headers are set automatically
-            console.log(formData);
+                    
 	  XHR.send(formData);
 //	console.log(formData);
 }
@@ -132,24 +132,28 @@ function deleteData(position){
 });
 }
 
-function eliminarAlumno(code){
+function eliminarAlumno(codigo){
     const XHR = new XMLHttpRequest();
     var formData = new URLSearchParams(new FormData());
-    
+
+    // Define what happens in case of error
     XHR.addEventListener('error', (event) => {
-        alert('Oops! Something went wrong. ');
+      alert('Oops! Something went wrong.');
     });
+
+    // Set up our request
     XHR.open('POST', 'ClienteController', true);
     XHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    
+
     XHR.onload = () => {
       if (XHR.readyState === XHR.DONE && XHR.status === 200) {
         console.log("response => " + XHR.response);
-        mostrarMensaje('Cliente Eliminado exitosamente');
+        mostrarMensaje('Estudiante Eliminado exitosamente');
         setTimeout( function() { window.location.reload(); }, 2000 );
       }
-    };
-            formData.append('codigo_alumno', code);
+    };        
+    formData.append('numero_carne', codigo);
     formData.append('control', 'ELIMINAR');
-    XHR.send(formData);
+    XHR.send(formData); 
+    
 }

@@ -54,7 +54,7 @@ public class ClienteController extends HttpServlet {
                                              registerClient.guardarAlumno2(client);
                            }
                            else if(control.toUpperCase().equals("ELIMINAR")){
-                                    int codeDelete = Integer.parseInt(request.getParameter("codigo_alumno"));
+                                    int codeDelete = Integer.parseInt(request.getParameter("numero_carne"));
                                     registerClient.eliminarCliente(codeDelete);
                            }
                             

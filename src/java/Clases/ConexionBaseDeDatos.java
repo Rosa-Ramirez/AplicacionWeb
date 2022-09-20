@@ -12,20 +12,20 @@ package Clases;
  */
 public class ConexionBaseDeDatos {
 
-    private final String url="jdbc:mysql://localhost:3306/universidad";//url de MySQL
+    protected String url="jdbc:mysql://localhost:3306/universidad";//url de MySQL
     private final String usuario="root";
     private final String clave="MySQLServer_Rouss154!";
-    Connection conexion=null;  
+    Connection conn=null;  
     public Connection conectar(){
         
         
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            conexion=DriverManager.getConnection( url, usuario,clave);
+            conn=DriverManager.getConnection( url, usuario,clave);
         }  catch (SQLException | ClassNotFoundException ex) {
            ex.printStackTrace();
         }         
-        return conexion;        
+        return conn;        
     }
 
 }
