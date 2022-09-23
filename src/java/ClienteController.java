@@ -37,7 +37,7 @@ public class ClienteController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-                  if(request.getMethod().equals("POST") && request.getParameter("code")!= null ) {
+//                  if(request.getMethod().equals("POST") && request.getParameter("code")!= null ) {
                        
                            registerClient = new ClienteArray();
                            String control = request.getParameter("control");
@@ -54,7 +54,7 @@ public class ClienteController extends HttpServlet {
                                              registerClient.guardarAlumno2(client);
                            }
                            else if(control.toUpperCase().equals("ELIMINAR")){
-                                    int codeDelete = Integer.parseInt(request.getParameter("numero_carne"));
+                                    int codeDelete = Integer.parseInt(request.getParameter("client_code"));
                                     registerClient.eliminarCliente(codeDelete);
                            }
                             
@@ -65,7 +65,7 @@ public class ClienteController extends HttpServlet {
 //                            if(!request.getParameter("code").equals("")){
 //                                registerClient.saveClient(client);
 //                            }
-                    }
+//                    }
                    
                    
 //                   if(request.getParameter("position") != null){
@@ -82,14 +82,14 @@ public class ClienteController extends HttpServlet {
             
             registerClient.getClient2(objetoRespuesta);
             out.write(objetoRespuesta.toString());
-                            
 
-                     out.println("<!DOCTYPE html>");
-                     out.println("<html><link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css\" integrity=\"sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N\" crossorigin=\"anonymous\">\n" +
-                     "<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct\" crossorigin=\"anonymous\"></script>"
-                     +"<script src=\"//cdn.jsdelivr.net/npm/sweetalert2@11\"></script>"
-                     +"<script src='js/script.js'></script>"
-                     );
+//                     out.println("<!DOCTYPE html>");
+//                     out.println("<html><link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css\" integrity=\"sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N\" crossorigin=\"anonymous\">\n" +
+//                     "<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct\" crossorigin=\"anonymous\"></script>"
+//                     +"<script src=\"//cdn.jsdelivr.net/npm/sweetalert2@11\"></script>"
+//                     +"<script src='js/script.js'></script>"
+//                     );
+                     
 //                     
 //                     out.println("<head>");
 //                     out.println("<title>Tabla de Cliente</title>");
@@ -102,8 +102,8 @@ public class ClienteController extends HttpServlet {
 //                                 "            </form>\n" +
 //                                 "            </nav><br>");
 //
-                     out.println(
-                             "<table class=\"table\">\n" +
+//                     out.println(
+//                             "<table class=\"table\">\n" +
 //                             "  <thead class=\"thead-dark\">\n" +
 //                             "    <tr>\n" +
 //                             "      <th scope=\"col\">Código</th>\n" +
@@ -115,8 +115,8 @@ public class ClienteController extends HttpServlet {
 //                             "      <th scope=\"col\">Acción</th>\n" +
 //                             "    </tr>\n" +
 //                             "  </thead>\n" +
-                             "  <tbody >\n"
-                         );
+//                             "  <tbody >\n"
+//                         );
 //                     for (int i = 0; i < registredClient.length; i ++){
 //                         if(registredClient[i] !=null){
 //                             out.println("<tr><td>" + registredClient[i].getCode()+  "</td>");

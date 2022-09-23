@@ -7,7 +7,7 @@
 function enviarForm(){ 
 var myForm = document.getElementById("contact-form");
 
-document.getElementById("btn3").addEventListener("click", function(){
+document.getElementById("btn3").addEventL0.istener("click", function(){
   myForm.submit();  
 });
  };
@@ -87,7 +87,7 @@ document.getElementById("btn3").addEventListener("click", function(){
 	  // Send our FormData object; HTTP headers are set automatically
                     
 	  XHR.send(formData);
-//	console.log(formData);
+	console.log(formData);
 }
 
 function deleteData(position){
@@ -132,7 +132,7 @@ function deleteData(position){
 });
 }
 
-function eliminarAlumno(codigo){
+function eliminarAlumno2(codigo){
     const XHR = new XMLHttpRequest();
     var formData = new URLSearchParams(new FormData());
 
@@ -152,7 +152,7 @@ function eliminarAlumno(codigo){
         setTimeout( function() { window.location.reload(); }, 2000 );
       }
     };        
-    formData.append('numero_carne', codigo);
+    formData.append('client_code', codigo);
     formData.append('control', 'ELIMINAR');
     XHR.send(formData); 
     

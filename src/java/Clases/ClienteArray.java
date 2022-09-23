@@ -97,7 +97,7 @@ public void saveClient(ClientModell client){
                 respuesta.append("<td >").append(result.getString("telefono")).append("</td>");
                 respuesta.append("<td >").append(result.getString("genero_idgenero")).append("</td>");
                 respuesta.append("<td id=\"").append(result.getString("numero_carne"))
-                        .append("\"  onclick=\"eliminarAlumno(this.id);\">") 
+                        .append("\"  onclick=\"eliminarAlumno2(this.id);\">") 
                         .append(" <a class=\"btn btn-warning\"'><i class=\"fas fa-edit\"></i>  </a>"
                                 +" <a class=\"btn btn-danger\"'> <i class=\"fas fa-trash-alt\"></i> </a>"
                                 + " <td></tr>");
@@ -112,7 +112,7 @@ public void saveClient(ClientModell client){
     }
     
     public String eliminarCliente(int carne){
-        String sql = "DELETE FROM universidad.cliente WHERE numero_carne = " + carne;
+        String sql = "DELETE FROM cliente WHERE numero_carne = "+carne;
         try{
             abrirConexion();
             statement = conexion.prepareStatement(sql);
